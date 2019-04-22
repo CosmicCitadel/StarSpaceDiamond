@@ -68,3 +68,10 @@ class Ship : GameObject {
     sprite.setPosition(300, 300);
   }
 }
+
+class SpaceThings : GameObject {
+
+  this(string file) {
+    super(file);
+  }
+}
