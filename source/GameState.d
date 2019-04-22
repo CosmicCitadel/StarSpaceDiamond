@@ -68,6 +68,7 @@ class PlayingState : GameState {
   Texture stars1T;
   Sprite stars1;
   Ship ship;
+  SpaceThing face;
 
   this(ref Window win) {
     super(win);
@@ -81,6 +82,7 @@ class PlayingState : GameState {
     ship.maxSpeed = 2.0;
     ship.sprite.setRotationCenter(ship.tex.width() / 2, ship.tex.height() / 2);
     ship.sprite.setPosition(win.getSize().width / 2, win.getSize().height / 2);
+    face = new SpaceThing("resources/facething.png");
   }
 
   override void render() {
@@ -130,6 +132,7 @@ class PlayingState : GameState {
       ship.move();
 
       win.draw(stars1);
+      win.draw(face.sprite);
       win.draw(ship.sprite);
       win.display();
   }

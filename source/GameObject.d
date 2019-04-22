@@ -69,7 +69,7 @@ class Ship : GameObject {
   }
 }
 
-class SpaceThings : GameObject {
+class SpaceThing : GameObject {
 
   this(string file) {
     super(file);
