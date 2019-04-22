@@ -71,7 +71,28 @@ class Ship : GameObject {
 
 class SpaceThing : GameObject {
 
+  uint direction = 0;
+  float speed = 2.0;
+
   this(string file) {
     super(file);
+  }
+
+  override void move() {
+    if (direction == 1) {
+      sprite.x = sprite.x + speed;
+    }
+    else {
+      sprite.x = sprite.x - speed;
+    }
+
+    if (sprite.x < 0) {
+      sprite.x = 0;
+      direction = 1;
+    }
+    else if (sprite.x + width > 800) {
+      sprite.x = 800 - width;
+      direction = 0;
+    }
   }
 }

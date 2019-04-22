@@ -131,6 +131,7 @@ class PlayingState : GameState {
         ship.sprite.rotate(ship.turnSpeed * Tracker.dt);
       }
 
+      face.move();
       ship.move();
 
       win.draw(stars1);
