@@ -2,6 +2,7 @@ module GameObject;
 
 import std.stdio;
 import std.math;
+import std.random;
 
 import Dgame.Graphic.Surface;
 import Dgame.Graphic.Texture;
@@ -73,26 +74,34 @@ class SpaceThing : GameObject {
 
   uint direction = 0;
   float speed = 2.0;
+  int destinationx;
+  int destinationy;
 
   this(string file) {
     super(file);
+    destinationx = uniform(0, 800);
+    destinationy = uniform(0, 600);
   }
 
   override void move() {
-    if (direction == 1) {
+    if (sprite.x < destinationx) {
       sprite.x = sprite.x + speed;
     }
-    else {
+    else if (sprite.x > destinationx) {
       sprite.x = sprite.x - speed;
     }
-
-    if (sprite.x < 0) {
-      sprite.x = 0;
-      direction = 1;
+    if (sprite.y < destinationy) {
+      sprite.y = sprite.y + speed;
     }
-    else if (sprite.x + width > 800) {
-      sprite.x = 800 - width;
-      direction = 0;
+    else if (sprite.y > destinationy) {
+      sprite.y = sprite.y - speed;
+    }
+
+    if (sprite.x < destinationx - 10 || sprite.x > destinationx + 10) {
+      if (sprite.y < destinationy - 10 || sprite.y > destinationy + 10) {
+        destinationx = uniform(0, 800);
+        destinationy = uniform(0, 600);
+      }
     }
   }
 }
@@ -126,7 +135,7 @@ class Lazer : GameObject {
     this.dy = dy;
   }
 
-  override void main() {
+  override void move() {
     sprite.move(dx, dy);
   }
 }
