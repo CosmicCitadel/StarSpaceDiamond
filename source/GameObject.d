@@ -113,3 +113,20 @@ class StarDiamond : GameObject {
     sprite.move(dx, dy);
   }
 }
+
+class Lazer : GameObject {
+
+  float speed = 3.0;
+  float dx;
+  float dy;
+
+  this(string file, float dx, float dy) {
+    super(file);
+    this.dx = dx;
+    this.dy = dy;
+  }
+
+  override void main() {
+    sprite.move(dx, dy);
+  }
+}
