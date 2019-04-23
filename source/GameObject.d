@@ -96,3 +96,20 @@ class SpaceThing : GameObject {
     }
   }
 }
+
+class StarDiamond : GameObject {
+
+  float speed = 3.0;
+  float dx;
+  float dy;
+
+  this(string file, float dx, float dy) {
+    super(file);
+    this.dx = dx;
+    this.dy = dy;
+  }
+
+  override void move() {
+    sprite.move(dx, dy);
+  }
+}
