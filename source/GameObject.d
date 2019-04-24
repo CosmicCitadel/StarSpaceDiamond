@@ -73,36 +73,39 @@ class Ship : GameObject {
 class SpaceThing : GameObject {
 
   uint direction = 0;
-  float speed = 2.0;
-  int destinationx;
-  int destinationy;
+  //float speed = 3.0;
+  float speed = 0.2;
+  int px;
+  int py;
 
   this(string file) {
     super(file);
-    destinationx = uniform(0, 800);
-    destinationy = uniform(0, 600);
+    px = uniform(0, 800);
+    py = uniform(0, 600);
   }
 
   override void move() {
-    if (sprite.x < destinationx) {
-      sprite.x = sprite.x + speed;
+    if (sprite.x < px) {
+      sprite.x = sprite.x + speed * Tracker.dt;
     }
-    else if (sprite.x > destinationx) {
-      sprite.x = sprite.x - speed;
+    else if (sprite.x > px) {
+      sprite.x = sprite.x - speed * Tracker.dt;
     }
-    if (sprite.y < destinationy) {
-      sprite.y = sprite.y + speed;
+    if (sprite.y < py) {
+      sprite.y = sprite.y + speed * Tracker.dt;
     }
-    else if (sprite.y > destinationy) {
-      sprite.y = sprite.y - speed;
+    else if (sprite.y > py) {
+      sprite.y = sprite.y - speed * Tracker.dt;
     }
 
-    if (sprite.x < destinationx - 10 || sprite.x > destinationx + 10) {
-      if (sprite.y < destinationy - 10 || sprite.y > destinationy + 10) {
-        destinationx = uniform(0, 800);
-        destinationy = uniform(0, 600);
-      }
+    if (sprite.x <= px && sprite.x > px - 2 || sprite.x >= px && sprite.x < px + 2) {
+      px = uniform(0, 800);
     }
+
+    if (sprite.y <= py && sprite.y > py - 2 || sprite.y >= py && sprite.y < py + 2) {
+      py = uniform(0, 600);
+    }
+
   }
 }
 
