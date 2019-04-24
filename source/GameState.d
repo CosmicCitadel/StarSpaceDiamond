@@ -70,7 +70,7 @@ class PlayingState : GameState {
   Ship ship;
   SpaceThing face;
   string faceLocation = "resources/facething.png";
-  SpaceThing[] faces;
+  SpaceThing[int] faces;
 
   this(ref Window win) {
     super(win);
@@ -86,7 +86,7 @@ class PlayingState : GameState {
     ship.sprite.setPosition(win.getSize().width / 2, win.getSize().height / 1.25);
     ship.sprite.rotate(-90);
     foreach (i; 0..3) {
-      faces ~= new SpaceThing(faceLocation);
+      faces[i] = new SpaceThing(faceLocation);
     }
   }
 
@@ -135,7 +135,7 @@ class PlayingState : GameState {
       }
 
       win.draw(stars1);
-      foreach (f; faces) {
+      foreach (ref f; faces) {
         f.move();
         win.draw(f.sprite);
       }
