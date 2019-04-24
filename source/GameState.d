@@ -145,8 +145,9 @@ class PlayingState : GameState {
       }
 
       win.draw(stars1);
-      foreach (ref f; faces) {
+      foreach (i, ref f; faces) {
         f.move();
+        win.draw(f.sprite);
         Rect rect = f.sprite.getClipRect();
         foreach (ref l; lazer) {
           Rect lr = l.sprite.getClipRect();
@@ -154,9 +155,11 @@ class PlayingState : GameState {
             debug {
               writeln("Ding");
             }
+            faces.remove(i);
+            Lazer.onscreen = false;
           }
         }
-        win.draw(f.sprite);
+        //win.draw(f.sprite);
       }
       foreach (ref l; lazer) {
         if (Lazer.onscreen) {
