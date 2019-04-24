@@ -140,6 +140,10 @@ class PlayingState : GameState {
         f.move();
         win.draw(f.sprite);
       }
+      foreach (ref l; lazerDiamonds) {
+        l.move();
+        win.draw(l.sprite);
+      }
       ship.move();
 
       //win.draw(stars1);
