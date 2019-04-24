@@ -15,7 +15,10 @@ void main() {
 	while(Tracker.running) {
 		Tracker.dt = Tracker.sw.getElapsedTicks();
 		Tracker.sw.reset();
-		Tracker.sw.wait(1000 / 60);
+		debug {
+			Tracker.sw.wait(1000 / 60);
+			writeln("Debugging");
+		}
 		state[Tracker.currentState].render();
 	}
 }
