@@ -69,6 +69,8 @@ class PlayingState : GameState {
   Sprite stars1;
   Ship ship;
   SpaceThing face;
+  string faceLocation = "resources/facething.png";
+  SpaceThing[] faces;
 
   this(ref Window win) {
     super(win);
@@ -83,8 +85,9 @@ class PlayingState : GameState {
     ship.sprite.setRotationCenter(ship.tex.width() / 2, ship.tex.height() / 2);
     ship.sprite.setPosition(win.getSize().width / 2, win.getSize().height / 1.25);
     ship.sprite.rotate(-90);
-    face = new SpaceThing("resources/facething.png");
-    face.sprite.y = win.getSize().height / 4;
+    foreach (i; 0..3) {
+      faces ~= new SpaceThing(faceLocation);
+    }
   }
 
   override void render() {
@@ -131,11 +134,15 @@ class PlayingState : GameState {
         ship.sprite.rotate(ship.turnSpeed * Tracker.dt);
       }
 
-      face.move();
+      win.draw(stars1);
+      foreach (f; faces) {
+        f.move();
+        win.draw(f.sprite);
+      }
       ship.move();
 
-      win.draw(stars1);
-      win.draw(face.sprite);
+      //win.draw(stars1);
+      //win.draw(face.sprite);
       win.draw(ship.sprite);
       win.display();
   }

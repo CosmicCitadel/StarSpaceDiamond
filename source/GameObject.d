@@ -82,6 +82,8 @@ class SpaceThing : GameObject {
     super(file);
     px = uniform(0, 800);
     py = uniform(0, 600);
+    sprite.x = uniform(0, 800);
+    sprite.y = uniform(0, 600);
   }
 
   override void move() {
