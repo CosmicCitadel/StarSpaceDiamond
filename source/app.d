@@ -17,7 +17,6 @@ void main() {
 		Tracker.sw.reset();
 		debug {
 			Tracker.sw.wait(1000 / 60);
-			writeln("Debugging");
 		}
 		state[Tracker.currentState].render();
 	}

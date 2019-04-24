@@ -8,6 +8,7 @@ import Dgame.Window.Event;
 import Dgame.Graphic.Surface;
 import Dgame.Graphic.Texture;
 import Dgame.Graphic.Sprite;
+import Dgame.Math.Rect;
 import Dgame.System.Keyboard;
 import Dgame.System.StopWatch;
 
@@ -146,6 +147,15 @@ class PlayingState : GameState {
       win.draw(stars1);
       foreach (ref f; faces) {
         f.move();
+        Rect rect = f.sprite.getClipRect();
+        foreach (ref l; lazer) {
+          Rect lr = l.sprite.getClipRect();
+          if (rect.intersects(lr)) {
+            debug {
+              writeln("Ding");
+            }
+          }
+        }
         win.draw(f.sprite);
       }
       foreach (ref l; lazer) {
