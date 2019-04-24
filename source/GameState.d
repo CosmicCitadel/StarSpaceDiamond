@@ -105,6 +105,10 @@ class PlayingState : GameState {
               ship.shipUp = true;
               ship.speed = ship.acceleration;
             }
+            if (evt.keyboard.key == Keyboard.Key.LCtrl) {
+              lazerDiamonds[0] = new Lazer("resources/shiplazer.png", ship.sprite.getRotation());
+              lazerDiamonds[0].sprite.setPosition(ship.sprite.getPosition());
+            }
             if (evt.keyboard.key == Keyboard.Key.R) {
               ship.reset();
             }

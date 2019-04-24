@@ -130,14 +130,14 @@ class StarDiamond : GameObject {
 
 class Lazer : GameObject {
 
-  float speed = 3.0;
+  float speed = 0.3;
   float deg;
   float dx;
   float dy;
 
   this(string file, float rotation) {
     super(file);
-    sprite.setRotation(rotation);
+    sprite.rotate(rotation - 90);
     deg = rotation * PI / 180.0;
     dx = cos(deg);
     dy = sin(deg);
