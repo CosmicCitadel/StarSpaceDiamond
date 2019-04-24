@@ -134,6 +134,7 @@ class Lazer : GameObject {
   float deg;
   float dx;
   float dy;
+  static bool onscreen = false;
 
   this(string file, float rotation) {
     super(file);
@@ -145,5 +146,12 @@ class Lazer : GameObject {
 
   override void move() {
     sprite.move(dx * speed * Tracker.dt, dy * speed * Tracker.dt);
+
+    if (sprite.x - width > 800 || sprite.x + width < 0) {
+      Lazer.onscreen = false;
+    }
+    else if (sprite.y - height > 600 || sprite.y + height < 0) {
+      Lazer.onscreen = false;
+    }
   }
 }

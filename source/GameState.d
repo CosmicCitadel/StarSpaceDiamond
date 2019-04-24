@@ -71,7 +71,7 @@ class PlayingState : GameState {
   SpaceThing face;
   string faceLocation = "resources/facething.png";
   SpaceThing[int] faces;
-  GameObject[int] lazerDiamonds;
+  Lazer[int] lazer;
 
   this(ref Window win) {
     super(win);
@@ -107,8 +107,11 @@ class PlayingState : GameState {
               ship.speed = ship.acceleration;
             }
             if (evt.keyboard.key == Keyboard.Key.LCtrl) {
-              lazerDiamonds[0] = new Lazer("resources/shiplazer.png", ship.sprite.getRotation());
-              lazerDiamonds[0].sprite.setPosition(ship.sprite.getPosition());
+              if (!Lazer.onscreen) {
+                lazer[0] = new Lazer("resources/shiplazer.png", ship.sprite.getRotation());
+                lazer[0].sprite.setPosition(ship.sprite.getPosition());
+                Lazer.onscreen = true;
+              }
             }
             if (evt.keyboard.key == Keyboard.Key.R) {
               ship.reset();
@@ -145,9 +148,11 @@ class PlayingState : GameState {
         f.move();
         win.draw(f.sprite);
       }
-      foreach (ref l; lazerDiamonds) {
-        l.move();
-        win.draw(l.sprite);
+      foreach (ref l; lazer) {
+        if (Lazer.onscreen) {
+          l.move();
+          win.draw(l.sprite);
+        }
       }
       ship.move();
 
