@@ -131,16 +131,19 @@ class StarDiamond : GameObject {
 class Lazer : GameObject {
 
   float speed = 3.0;
+  float deg;
   float dx;
   float dy;
 
-  this(string file, float dx, float dy) {
+  this(string file, float rotation) {
     super(file);
-    this.dx = dx;
-    this.dy = dy;
+    sprite.setRotation(rotation);
+    deg = rotation * PI / 180.0;
+    dx = cos(deg);
+    dy = sin(deg);
   }
 
   override void move() {
-    sprite.move(dx, dy);
+    sprite.move(dx * speed * Tracker.dt, dy * speed * Tracker.dt);
   }
 }

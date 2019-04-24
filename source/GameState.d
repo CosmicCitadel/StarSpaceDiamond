@@ -71,6 +71,7 @@ class PlayingState : GameState {
   SpaceThing face;
   string faceLocation = "resources/facething.png";
   SpaceThing[int] faces;
+  GameObject[int] lazerDiamonds;
 
   this(ref Window win) {
     super(win);
