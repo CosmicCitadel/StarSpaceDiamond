@@ -83,7 +83,8 @@ class PlayingState : GameState {
     //ship.acceleration = 0.0006;
     ship.acceleration = 0.003;
     ship.maxSpeed = 2.0;
-    ship.sprite.setRotationCenter(ship.tex.width() / 2, ship.tex.height() / 2);
+    //ship.sprite.setRotationCenter(ship.tex.width() / 2, ship.tex.height() / 2);
+    ship.sprite.setOrigin(30, 30);
     ship.sprite.setPosition(win.getSize().width / 2, win.getSize().height / 1.25);
     ship.sprite.rotate(-90);
     foreach (i; 0..3) {
