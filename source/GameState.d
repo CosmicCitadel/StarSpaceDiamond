@@ -74,6 +74,8 @@ class PlayingState : GameState {
   SpaceThing[int] faces;
   Lazer[int] lazer;
   Puff[int] puff;
+  StarDiamond[int] diamonds;
+  int diamondCount = -1;
 
   this(ref Window win) {
     super(win);
@@ -156,6 +158,16 @@ class PlayingState : GameState {
             debug {
               writeln("Ding");
             }
+            StarDiamond diamond = new StarDiamond("resources/stardiamond.png");
+            diamond.sprite.setPosition(f.sprite.getPosition());
+            diamond.onscreen = true;
+            ++diamondCount;
+            diamonds[diamondCount] = diamond;
+            ++diamondCount;
+            diamond = new StarDiamond("resources/stardiamond.png");
+            diamond.sprite.setPosition(f.sprite.getPosition());
+            diamond.onscreen = true;
+            diamonds[diamondCount] = diamond;
             puff[i] = new Puff("resources/puff.png");
             puff[i].sprite.setPosition(f.sprite.getPosition());
             faces.remove(i);
@@ -164,6 +176,15 @@ class PlayingState : GameState {
           }
         }
         //win.draw(f.sprite);
+      }
+      foreach (i, ref d; diamonds) {
+        if (diamonds[i].onscreen) {
+          d.move();
+          win.draw(d.sprite);
+        }
+        else {
+          diamonds.remove(i);
+        }
       }
       foreach (ref l; lazer) {
         if (Lazer.onscreen) {

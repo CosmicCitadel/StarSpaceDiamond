@@ -116,15 +116,23 @@ class StarDiamond : GameObject {
   float speed = 0.3;
   float dx;
   float dy;
+  bool onscreen = false;
 
-  this(string file, float dx, float dy) {
+  this(string file) {
     super(file);
-    this.dx = dx;
-    this.dy = dy;
+    float deg = uniform(0.0, 360.0) * PI / 180.0;
+    dx = cos(deg);
+    dy = sin(deg);
   }
 
   override void move() {
     sprite.move(dx * speed * Tracker.dt, dy * speed * Tracker.dt);
+    if (sprite.x - width > 800 || sprite.x + width < 0) {
+      onscreen = false;
+    }
+    else if (sprite.y - height > 600 || sprite.y + height < 0) {
+      onscreen = false;
+    }
   }
 }
 
