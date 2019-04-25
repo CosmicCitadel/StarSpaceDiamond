@@ -155,3 +155,21 @@ class Lazer : GameObject {
     }
   }
 }
+
+class Puff : GameObject {
+
+  int time = 0;
+  bool onscreen = true;
+
+  this(string file) {
+    super(file);
+  }
+
+  void check() {
+    time += Tracker.dt;
+
+    if (time >= 200) {
+      onscreen = false;
+    }
+  }
+}

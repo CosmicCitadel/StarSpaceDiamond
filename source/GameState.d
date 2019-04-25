@@ -73,6 +73,7 @@ class PlayingState : GameState {
   string faceLocation = "resources/facething.png";
   SpaceThing[int] faces;
   Lazer[int] lazer;
+  Puff[int] puff;
 
   this(ref Window win) {
     super(win);
@@ -155,8 +156,11 @@ class PlayingState : GameState {
             debug {
               writeln("Ding");
             }
+            puff[i] = new Puff("resources/puff.png");
+            puff[i].sprite.setPosition(f.sprite.getPosition());
             faces.remove(i);
             Lazer.onscreen = false;
+            lazer.remove(0);
           }
         }
         //win.draw(f.sprite);
@@ -165,6 +169,16 @@ class PlayingState : GameState {
         if (Lazer.onscreen) {
           l.move();
           win.draw(l.sprite);
+        }
+      }
+      foreach (i, ref p; puff) {
+        p.check();
+        if (p.onscreen) {
+          win.draw(p.sprite);
+        }
+        else {
+          p.onscreen = false;
+          puff.remove(i);
         }
       }
       ship.move();
