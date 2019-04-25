@@ -113,7 +113,7 @@ class SpaceThing : GameObject {
 
 class StarDiamond : GameObject {
 
-  float speed = 3.0;
+  float speed = 0.3;
   float dx;
   float dy;
 
@@ -124,7 +124,7 @@ class StarDiamond : GameObject {
   }
 
   override void move() {
-    sprite.move(dx, dy);
+    sprite.move(dx * speed * Tracker.dt, dy * speed * Tracker.dt);
   }
 }
 
