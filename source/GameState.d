@@ -167,7 +167,6 @@ class PlayingState : GameState {
             puff[i].sprite.setPosition(f.sprite.getPosition());
             faces.remove(i);
             Lazer.onscreen = false;
-            lazer.remove(0);
           }
         }
         //win.draw(f.sprite);
