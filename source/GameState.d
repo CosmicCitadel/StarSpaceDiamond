@@ -182,6 +182,14 @@ class PlayingState : GameState {
         if (d.onscreen) {
           d.move();
           win.draw(d.sprite);
+          foreach(i, ref f; faces) {
+            Rect drect = d.sprite.getClipRect();
+            if (drect.intersects(f.sprite.getClipRect())) {
+              debug {
+                writeln("Another ding");
+              }
+            }
+          }
         }
         else {
           diamonds.remove(i);
