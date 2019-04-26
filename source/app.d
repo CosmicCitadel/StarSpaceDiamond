@@ -1,5 +1,6 @@
 import std.stdio;
 import Dgame.Window.Window;
+import Dgame.System.Font;
 
 import GameState;
 
@@ -7,9 +8,10 @@ void main() {
 	Window win = Window(800, 600, "StarSpaceDiamond");
 	win.setVerticalSync(Window.VerticalSync.Enable);
 	//TitleState title = new TitleState(win);
+	Font font = Font("resources/font.ttf", 16);
 	GameState[int] state;
 	state[Tracker.TITLE] = new TitleState(win);
-	state[Tracker.PLAYING] = new PlayingState(win);
+	state[Tracker.PLAYING] = new PlayingState(win, font);
 	Tracker.currentState = Tracker.TITLE;
 
 	while(Tracker.running) {

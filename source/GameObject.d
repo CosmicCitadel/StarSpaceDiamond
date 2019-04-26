@@ -17,6 +17,8 @@ class GameObject {
   uint width;
   uint height;
 
+  int value;
+
   this(string file) {
     tex = Texture(Surface(file));
     tex.setSmooth(true);
@@ -84,6 +86,7 @@ class SpaceThing : GameObject {
     py = uniform(0, 600);
     sprite.x = uniform(0, 800);
     sprite.y = uniform(0, 600);
+    value = 10;
   }
 
   override void move() {

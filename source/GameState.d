@@ -3,14 +3,18 @@ module GameState;
 import std.stdio;
 import std.math;
 import std.algorithm.mutation;
+import std.string;
 
 import Dgame.Window.Window;
 import Dgame.Window.Event;
 import Dgame.Graphic.Surface;
 import Dgame.Graphic.Texture;
 import Dgame.Graphic.Sprite;
+import Dgame.Graphic.Text;
+import Dgame.Graphic.Color;
 import Dgame.Math.Rect;
 import Dgame.Math.Vector2;
+import Dgame.System.Font;
 import Dgame.System.Keyboard;
 import Dgame.System.StopWatch;
 
@@ -80,8 +84,9 @@ class PlayingState : GameState {
   StarDiamond[int] diamonds;
   int diamondCount = 0;
   Vector2f diamondPosition;
+  Text text;
 
-  this(ref Window win) {
+  this(ref Window win, ref Font font) {
     super(win);
     stars1T = Texture(Surface("resources/stars1.png"));
     stars1 = new Sprite(stars1T);
@@ -98,6 +103,8 @@ class PlayingState : GameState {
     foreach (i; 0..3) {
       faces[i] = new SpaceThing(faceLocation);
     }
+    text = new Text(font, format("Score: %d", Tracker.score));
+    text.foreground = Color4b.White;
   }
 
   override void render() {
@@ -162,6 +169,8 @@ class PlayingState : GameState {
             debug {
               writeln("Ding");
             }
+            Tracker.score += f.value;
+            text.setData(format("Score: %d", Tracker.score));
             diamondCount += 2;
             diamondPosition = f.sprite.getPosition();
             puff[i] = new Puff("resources/puff.png");
@@ -188,6 +197,8 @@ class PlayingState : GameState {
               debug {
                 writeln("Another ding");
               }
+              Tracker.score += f.value + 5;
+              text.setData(format("Score: %d", Tracker.score));
               diamondCount += 2;
               diamondPosition = f.sprite.getPosition();
               puff[i] = new Puff("resources/puff.png");
@@ -226,6 +237,7 @@ class PlayingState : GameState {
       //win.draw(stars1);
       //win.draw(face.sprite);
       win.draw(ship.sprite);
+      win.draw(text);
       win.display();
   }
 }
