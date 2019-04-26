@@ -188,6 +188,12 @@ class PlayingState : GameState {
               debug {
                 writeln("Another ding");
               }
+              diamondCount += 2;
+              diamondPosition = f.sprite.getPosition();
+              puff[i] = new Puff("resources/puff.png");
+              puff[i].sprite.setPosition(diamondPosition);
+              faces.remove(i);
+              d.onscreen = false;
             }
           }
         }
