@@ -77,6 +77,7 @@ class PlayingState : GameState {
   Lazer[int] lazer;
   Puff[int] puff;
   StarDiamond[int] diamonds;
+  int diamondCount = 0;
   Vector2f diamondPosition;
 
   this(ref Window win) {
@@ -171,19 +172,19 @@ class PlayingState : GameState {
         }
         //win.draw(f.sprite);
       }
-      if (diamondCount > 0) {
+      while(diamondCount > 0) {
         StarDiamond d = new StarDiamond("resources/stardiamond.png");
         d.sprite.setPosition(diamondPosition);
-        diamonds ~= d;
+        diamonds[d.id] = d;
         --diamondCount;
       }
       foreach (i, ref d; diamonds) {
-        if (diamonds[i].onscreen) {
+        if (d.onscreen) {
           d.move();
           win.draw(d.sprite);
         }
         else {
-          //diamonds.remove(i);
+          diamonds.remove(i);
           //diamonds = diamonds.remove(i);
         }
       }
