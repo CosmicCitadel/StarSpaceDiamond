@@ -188,10 +188,13 @@ class PlayingState : GameState {
           //diamonds = diamonds.remove(i);
         }
       }
-      foreach (ref l; lazer) {
+      foreach (i, ref l; lazer) {
         if (Lazer.onscreen) {
           l.move();
           win.draw(l.sprite);
+        }
+        else {
+          lazer.remove(i);
         }
       }
       foreach (i, ref p; puff) {
