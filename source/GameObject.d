@@ -116,13 +116,17 @@ class StarDiamond : GameObject {
   float speed = 0.3;
   float dx;
   float dy;
-  bool onscreen = false;
+  bool onscreen = true;
+  static int count = 0;
+  int id = 0;
 
   this(string file) {
     super(file);
     float deg = uniform(0.0, 360.0) * PI / 180.0;
     dx = cos(deg);
     dy = sin(deg);
+    id = count;
+    ++count;
   }
 
   override void move() {

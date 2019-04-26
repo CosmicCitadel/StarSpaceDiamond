@@ -2,6 +2,7 @@ module GameState;
 
 import std.stdio;
 import std.math;
+import std.algorithm.mutation;
 
 import Dgame.Window.Window;
 import Dgame.Window.Event;
@@ -9,6 +10,7 @@ import Dgame.Graphic.Surface;
 import Dgame.Graphic.Texture;
 import Dgame.Graphic.Sprite;
 import Dgame.Math.Rect;
+import Dgame.Math.Vector2;
 import Dgame.System.Keyboard;
 import Dgame.System.StopWatch;
 
@@ -75,7 +77,7 @@ class PlayingState : GameState {
   Lazer[int] lazer;
   Puff[int] puff;
   StarDiamond[int] diamonds;
-  int diamondCount = -1;
+  Vector2f diamondPosition;
 
   this(ref Window win) {
     super(win);
@@ -158,16 +160,8 @@ class PlayingState : GameState {
             debug {
               writeln("Ding");
             }
-            StarDiamond diamond = new StarDiamond("resources/stardiamond.png");
-            diamond.sprite.setPosition(f.sprite.getPosition());
-            diamond.onscreen = true;
-            ++diamondCount;
-            diamonds[diamondCount] = diamond;
-            ++diamondCount;
-            diamond = new StarDiamond("resources/stardiamond.png");
-            diamond.sprite.setPosition(f.sprite.getPosition());
-            diamond.onscreen = true;
-            diamonds[diamondCount] = diamond;
+            diamondCount += 2;
+            diamondPosition = f.sprite.getPosition();
             puff[i] = new Puff("resources/puff.png");
             puff[i].sprite.setPosition(f.sprite.getPosition());
             faces.remove(i);
@@ -177,13 +171,20 @@ class PlayingState : GameState {
         }
         //win.draw(f.sprite);
       }
+      if (diamondCount > 0) {
+        StarDiamond d = new StarDiamond("resources/stardiamond.png");
+        d.sprite.setPosition(diamondPosition);
+        diamonds ~= d;
+        --diamondCount;
+      }
       foreach (i, ref d; diamonds) {
         if (diamonds[i].onscreen) {
           d.move();
           win.draw(d.sprite);
         }
         else {
-          diamonds.remove(i);
+          //diamonds.remove(i);
+          //diamonds = diamonds.remove(i);
         }
       }
       foreach (ref l; lazer) {
