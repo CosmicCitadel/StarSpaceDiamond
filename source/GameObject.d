@@ -130,6 +130,7 @@ class StarDiamond : GameObject {
     dy = sin(deg);
     id = count;
     ++count;
+    value = 10;
   }
 
   override void move() {

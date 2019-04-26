@@ -191,8 +191,8 @@ class PlayingState : GameState {
         if (d.onscreen) {
           d.move();
           win.draw(d.sprite);
+          Rect drect = d.sprite.getClipRect();
           foreach(i, ref f; faces) {
-            Rect drect = d.sprite.getClipRect();
             if (drect.intersects(f.sprite.getClipRect())) {
               debug {
                 writeln("Another ding");
@@ -206,6 +206,14 @@ class PlayingState : GameState {
               faces.remove(i);
               d.onscreen = false;
             }
+          }
+          if (drect.intersects(ship.sprite.getClipRect())) {
+            debug {
+              writeln("Sparkle!");
+            }
+            Tracker.score += d.value;
+            text.setData(format("Score: %d", Tracker.score));
+            d.onscreen = false;
           }
         }
         else {
