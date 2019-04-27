@@ -21,7 +21,7 @@ import Dgame.System.StopWatch;
 import GameObject;
 
 struct Tracker {
-  static enum {TITLE, PLAYING};
+  static enum {TITLE, PLAYING, LEVEL2};
   static int currentState = TITLE;
   static bool running = true;
   static StopWatch sw;
@@ -244,8 +244,18 @@ class PlayingState : GameState {
 
       //win.draw(stars1);
       //win.draw(face.sprite);
+      if (faces.length == 0) {
+        Tracker.currentState = Tracker.LEVEL2;
+      }
       win.draw(ship.sprite);
       win.draw(text);
       win.display();
+  }
+}
+
+class PlayingLevel2 : PlayingState {
+
+  this(ref Window win, ref Font font) {
+    super(win, font);
   }
 }
