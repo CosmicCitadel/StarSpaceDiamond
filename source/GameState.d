@@ -244,7 +244,7 @@ class PlayingState : GameState {
 
       //win.draw(stars1);
       //win.draw(face.sprite);
-      if (faces.length == 0) {
+      if (faces.length == 0 && diamonds.length == 0) {
         Tracker.currentState = Tracker.LEVEL2;
         //++Tracker.currentState;
       }
