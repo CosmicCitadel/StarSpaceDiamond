@@ -170,7 +170,7 @@ class PlayingState : GameState {
               writeln("Ding");
             }
             Tracker.score += f.value;
-            text.setData(format("Score: %d", Tracker.score));
+            //text.setData(format("Score: %d", Tracker.score));
             diamondCount += 2;
             diamondPosition = f.sprite.getPosition();
             puff[i] = new Puff("resources/puff.png");
@@ -198,7 +198,7 @@ class PlayingState : GameState {
                 writeln("Another ding");
               }
               Tracker.score += f.value + 5;
-              text.setData(format("Score: %d", Tracker.score));
+              //text.setData(format("Score: %d", Tracker.score));
               diamondCount += 2;
               diamondPosition = f.sprite.getPosition();
               puff[i] = new Puff("resources/puff.png");
@@ -212,7 +212,7 @@ class PlayingState : GameState {
               writeln("Sparkle!");
             }
             Tracker.score += d.value;
-            text.setData(format("Score: %d", Tracker.score));
+            //text.setData(format("Score: %d", Tracker.score));
             d.onscreen = false;
           }
         }
@@ -246,8 +246,10 @@ class PlayingState : GameState {
       //win.draw(face.sprite);
       if (faces.length == 0) {
         Tracker.currentState = Tracker.LEVEL2;
+        //++Tracker.currentState;
       }
       win.draw(ship.sprite);
+      text.setData(format("Score: %d", Tracker.score));
       win.draw(text);
       win.display();
   }
