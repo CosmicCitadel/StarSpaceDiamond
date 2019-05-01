@@ -21,7 +21,7 @@ import Dgame.System.StopWatch;
 import GameObject;
 
 struct Tracker {
-  static enum {TITLE, PLAYING, LEVEL2};
+  static enum {TITLE, PLAYING, LEVEL2, LEVEL3};
   static int currentState = TITLE;
   static bool running = true;
   static StopWatch sw;
@@ -246,7 +246,7 @@ class PlayingState : GameState {
       //win.draw(face.sprite);
       if (faces.length == 0 && diamonds.length == 0) {
         //Tracker.currentState = Tracker.LEVEL2;
-        if (Tracker.currentState < Tracker.LEVEL2) {
+        if (Tracker.currentState < Tracker.LEVEL3) {
           ++Tracker.currentState;
         }
       }

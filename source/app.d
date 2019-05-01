@@ -12,7 +12,9 @@ void main() {
 	GameState[int] state;
 	state[Tracker.TITLE] = new TitleState(win);
 	state[Tracker.PLAYING] = new PlayingState(win, font, 3);
-	state[Tracker.LEVEL2] = new PlayingLevel2(win, font, 5);
+	//state[Tracker.LEVEL2] = new PlayingLevel2(win, font, 5);
+	state[Tracker.LEVEL2] = new PlayingState(win, font, 5);
+	state[Tracker.LEVEL3] = new PlayingState(win, font, 9);
 	Tracker.currentState = Tracker.TITLE;
 
 	while(Tracker.running) {
