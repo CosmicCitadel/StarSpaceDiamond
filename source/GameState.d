@@ -86,7 +86,7 @@ class PlayingState : GameState {
   Vector2f diamondPosition;
   Text text;
 
-  this(ref Window win, ref Font font) {
+  this(ref Window win, ref Font font, int thingNumber) {
     super(win);
     stars1T = Texture(Surface("resources/stars1.png"));
     stars1 = new Sprite(stars1T);
@@ -100,7 +100,7 @@ class PlayingState : GameState {
     ship.sprite.setOrigin(30, 30);
     ship.sprite.setPosition(win.getSize().width / 2, win.getSize().height / 1.25);
     ship.sprite.rotate(-90);
-    foreach (i; 0..3) {
+    foreach (i; 0..thingNumber) {
       faces[i] = new SpaceThing(faceLocation);
     }
     text = new Text(font, format("Score: %d", Tracker.score));
@@ -257,7 +257,7 @@ class PlayingState : GameState {
 
 class PlayingLevel2 : PlayingState {
 
-  this(ref Window win, ref Font font) {
-    super(win, font);
+  this(ref Window win, ref Font font, int thingNumber) {
+    super(win, font, thingNumber);
   }
 }
