@@ -87,6 +87,7 @@ class PlayingState : GameState {
   int diamondCount = 0;
   Vector2f diamondPosition;
   Text text;
+  static int thingNumber = 1;
 
   this(ref Window win, int thingNumber) {
     super(win);
@@ -102,7 +103,8 @@ class PlayingState : GameState {
     ship.sprite.setOrigin(30, 30);
     ship.sprite.setPosition(win.getSize().width / 2, win.getSize().height / 1.25);
     ship.sprite.rotate(-90);
-    foreach (i; 0..thingNumber) {
+    PlayingState.thingNumber += thingNumber;
+    foreach (i; 0..PlayingState.thingNumber) {
       faces[i] = new SpaceThing(faceLocation);
     }
     text = new Text(Tracker.font, format("Score: %d", Tracker.score));
@@ -251,7 +253,7 @@ class PlayingState : GameState {
         /*if (Tracker.currentState < Tracker.LEVEL3) {
           ++Tracker.currentState;
         }*/
-        Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 10);
+        Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 2);
       }
       win.draw(ship.sprite);
       text.setData(format("Score: %d", Tracker.score));

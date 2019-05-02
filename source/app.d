@@ -12,10 +12,10 @@ void main() {
 	Tracker.font = Font("resources/font.ttf", 16);
 	//GameState[int] state;
 	Tracker.state[Tracker.TITLE] = new TitleState(win);
-	Tracker.state[Tracker.PLAYING] = new PlayingState(win, 3);
+	Tracker.state[Tracker.PLAYING] = new PlayingState(win, 2);
 	//state[Tracker.LEVEL2] = new PlayingLevel2(win, 5);
-	Tracker.state[Tracker.LEVEL2] = new PlayingState(win, 5);
-	Tracker.state[Tracker.LEVEL3] = new PlayingState(win, 9);
+	//Tracker.state[Tracker.LEVEL2] = new PlayingState(win, 5);
+	//Tracker.state[Tracker.LEVEL3] = new PlayingState(win, 9);
 	Tracker.currentState = Tracker.TITLE;
 
 	while(Tracker.running) {
