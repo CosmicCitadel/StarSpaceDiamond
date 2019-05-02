@@ -9,12 +9,12 @@ void main() {
 	win.setVerticalSync(Window.VerticalSync.Enable);
 	//TitleState title = new TitleState(win);
 	Font font = Font("resources/font.ttf", 16);
-	GameState[int] state;
-	state[Tracker.TITLE] = new TitleState(win);
-	state[Tracker.PLAYING] = new PlayingState(win, font, 3);
+	//GameState[int] state;
+	Tracker.state[Tracker.TITLE] = new TitleState(win);
+	Tracker.state[Tracker.PLAYING] = new PlayingState(win, font, 3);
 	//state[Tracker.LEVEL2] = new PlayingLevel2(win, font, 5);
-	state[Tracker.LEVEL2] = new PlayingState(win, font, 5);
-	state[Tracker.LEVEL3] = new PlayingState(win, font, 9);
+	Tracker.state[Tracker.LEVEL2] = new PlayingState(win, font, 5);
+	Tracker.state[Tracker.LEVEL3] = new PlayingState(win, font, 9);
 	Tracker.currentState = Tracker.TITLE;
 
 	while(Tracker.running) {
@@ -23,6 +23,6 @@ void main() {
 		debug {
 			Tracker.sw.wait(1000 / 60);
 		}
-		state[Tracker.currentState].render();
+		Tracker.state[Tracker.currentState].render();
 	}
 }

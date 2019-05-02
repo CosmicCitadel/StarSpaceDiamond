@@ -27,6 +27,7 @@ struct Tracker {
   static StopWatch sw;
   static uint dt;
   static int score = 0;
+  static GameState[int] state;
 }
 
 class GameState {
