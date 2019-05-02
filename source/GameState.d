@@ -28,6 +28,7 @@ struct Tracker {
   static uint dt;
   static int score = 0;
   static GameState[int] state;
+  static Font font;
 }
 
 class GameState {
@@ -87,7 +88,7 @@ class PlayingState : GameState {
   Vector2f diamondPosition;
   Text text;
 
-  this(ref Window win, ref Font font, int thingNumber) {
+  this(ref Window win, int thingNumber) {
     super(win);
     stars1T = Texture(Surface("resources/stars1.png"));
     stars1 = new Sprite(stars1T);
@@ -104,7 +105,7 @@ class PlayingState : GameState {
     foreach (i; 0..thingNumber) {
       faces[i] = new SpaceThing(faceLocation);
     }
-    text = new Text(font, format("Score: %d", Tracker.score));
+    text = new Text(Tracker.font, format("Score: %d", Tracker.score));
     text.foreground = Color4b.White;
   }
 
@@ -260,7 +261,7 @@ class PlayingState : GameState {
 
 class PlayingLevel2 : PlayingState {
 
-  this(ref Window win, ref Font font, int thingNumber) {
-    super(win, font, thingNumber);
+  this(ref Window win, int thingNumber) {
+    super(win, thingNumber);
   }
 }
