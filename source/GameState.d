@@ -248,9 +248,10 @@ class PlayingState : GameState {
       //win.draw(face.sprite);
       if (faces.length == 0 && diamonds.length == 0) {
         //Tracker.currentState = Tracker.LEVEL2;
-        if (Tracker.currentState < Tracker.LEVEL3) {
+        /*if (Tracker.currentState < Tracker.LEVEL3) {
           ++Tracker.currentState;
-        }
+        }*/
+        Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 10);
       }
       win.draw(ship.sprite);
       text.setData(format("Score: %d", Tracker.score));
