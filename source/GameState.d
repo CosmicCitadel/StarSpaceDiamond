@@ -272,8 +272,25 @@ class PlayingLevel2 : PlayingState {
 
 class LevelScreen : GameState {
 
+  Texture stars1T;
+  Sprite stars1;
+  Texture levelMessageT;
+  Sprite levelMessage;
+
+  float messageSpeed = 0.02;
+  float middleW;
+  float middleH;
+
   this(ref Window win) {
     super(win);
+    stars1T = Texture(Surface("resources/stars1.png"));
+    stars1 = new Sprite(stars1T);
+    levelMessageT = Texture(Surface("resources/levelcomplete.png"));
+    levelMessage = new Sprite(levelMessageT);
+    middleW = win.getSize().width / 2;
+    middleH = win.getSize().height / 2;
+    stars1.setOrigin(stars1T.width() / 2, stars1T.height() / 2);
+    stars1.setPosition(middleW, -stars1T.height());
   }
 
   override void render() {
@@ -291,5 +308,9 @@ class LevelScreen : GameState {
         default: break;
       }
     }
+
+    win.draw(stars1);
+    win.draw(levelMessage);
+    win.display();
   }
 }
