@@ -289,8 +289,8 @@ class LevelScreen : GameState {
     levelMessage = new Sprite(levelMessageT);
     middleW = win.getSize().width / 2;
     middleH = win.getSize().height / 2;
-    stars1.setOrigin(stars1T.width() / 2, stars1T.height() / 2);
-    stars1.setPosition(middleW, -stars1T.height());
+    levelMessage.setOrigin(levelMessageT.width() / 2, levelMessageT.height() / 2);
+    levelMessage.setPosition(middleW, middleH);
   }
 
   override void render() {
