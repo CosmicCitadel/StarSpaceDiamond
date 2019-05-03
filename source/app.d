@@ -13,6 +13,7 @@ void main() {
 	//GameState[int] state;
 	Tracker.state[Tracker.TITLE] = new TitleState(win);
 	Tracker.state[Tracker.PLAYING] = new PlayingState(win, 2);
+	Tracker.state[Tracker.LEVEL_SCREEN] = new LevelScreen(win);
 	//state[Tracker.LEVEL2] = new PlayingLevel2(win, 5);
 	//Tracker.state[Tracker.LEVEL2] = new PlayingState(win, 5);
 	//Tracker.state[Tracker.LEVEL3] = new PlayingState(win, 9);

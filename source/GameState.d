@@ -21,7 +21,7 @@ import Dgame.System.StopWatch;
 import GameObject;
 
 struct Tracker {
-  static enum {TITLE, PLAYING, LEVEL2, LEVEL3};
+  static enum {TITLE, PLAYING, LEVEL_SCREEN};
   static int currentState = TITLE;
   static bool running = true;
   static StopWatch sw;
@@ -266,5 +266,28 @@ class PlayingLevel2 : PlayingState {
 
   this(ref Window win, int thingNumber) {
     super(win, thingNumber);
+  }
+}
+
+class LevelScreen : GameState {
+
+  this(ref Window win) {
+    super(win);
+  }
+
+  override void render() {
+    while(win.poll(&evt)) {
+      switch(evt.type) {
+        case Event.Type.KeyDown:
+          if (evt.keyboard.key == Keyboard.Key.Return) {
+            Tracker.currentState = Tracker.PLAYING;
+          }
+        break;
+        case Event.Type.Quit:
+          Tracker.running = false;
+        break;
+        default: break;
+      }
+    }
   }
 }
