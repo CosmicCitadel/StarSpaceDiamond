@@ -253,7 +253,8 @@ class PlayingState : GameState {
         /*if (Tracker.currentState < Tracker.LEVEL3) {
           ++Tracker.currentState;
         }*/
-        Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 2);
+        //Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 2);
+        Tracker.currentState = Tracker.LEVEL_SCREEN;
       }
       win.draw(ship.sprite);
       text.setData(format("Score: %d", Tracker.score));
@@ -280,6 +281,7 @@ class LevelScreen : GameState {
       switch(evt.type) {
         case Event.Type.KeyDown:
           if (evt.keyboard.key == Keyboard.Key.Return) {
+            Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 2);
             Tracker.currentState = Tracker.PLAYING;
           }
         break;
