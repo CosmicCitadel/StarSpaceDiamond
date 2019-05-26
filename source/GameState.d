@@ -297,7 +297,7 @@ class LevelScreen : GameState {
     while(win.poll(&evt)) {
       switch(evt.type) {
         case Event.Type.KeyDown:
-          if (evt.keyboard.key == Keyboard.Key.Return) {
+          if (evt.keyboard.key == Keyboard.Key.LCtrl) {
             Tracker.state[Tracker.PLAYING] = new PlayingState(*win, 2);
             Tracker.currentState = Tracker.PLAYING;
           }
