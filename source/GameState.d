@@ -57,7 +57,7 @@ class TitleState : GameState {
       while(win.poll(&evt)) {
         switch(evt.type) {
           case Event.Type.KeyDown:
-            if (evt.keyboard.key == Keyboard.Key.Return) {
+            if (evt.keyboard.key == Keyboard.Key.LCtrl) {
               Tracker.currentState = Tracker.PLAYING;
             }
           break;
